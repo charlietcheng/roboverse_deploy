@@ -1,0 +1,61 @@
+
+NODES
+  /
+    controller_spawner (controller_manager/spawner)
+    franka_control (franka_control/franka_control_node)
+    franka_gripper (franka_gripper/franka_gripper_node)
+    joint_state_publisher (joint_state_publisher/joint_state_publisher)
+    robot_state_publisher (robot_state_publisher/robot_state_publisher)
+    state_controller_spawner (controller_manager/spawner)
+
+ROS_MASTER_URI=http://localhost:11311
+
+process[franka_gripper-1]: started with pid [37]
+process[franka_control-2]: started with pid [38]
+process[state_controller_spawner-3]: started with pid [39]
+process[robot_state_publisher-4]: started with pid [40]
+process[joint_state_publisher-5]: started with pid [41]
+process[controller_spawner-6]: started with pid [42]
+[ INFO] [1742200139.835182109]: franka_gripper_node: Found default_speed 0.1
+[ INFO] [1742200139.835768872]: franka_gripper_node: Found default_grasp_epsilon inner: 0.005, outer: 0.005
+[INFO] [1742200140.003894]: Controller Spawner: Waiting for service controller_manager/load_controller
+[INFO] [1742200140.004885]: Controller Spawner: Waiting for service controller_manager/load_controller
+[INFO] [1742200140.004986]: Controller Spawner: Waiting for service controller_manager/switch_controller
+[INFO] [1742200140.005901]: Controller Spawner: Waiting for service controller_manager/unload_controller
+[INFO] [1742200140.006300]: Controller Spawner: Waiting for service controller_manager/switch_controller
+[INFO] [1742200140.006744]: Loading controller: joint_position_controller
+[INFO] [1742200140.007356]: Controller Spawner: Waiting for service controller_manager/unload_controller
+[INFO] [1742200140.008310]: Loading controller: franka_state_controller
+[INFO] [1742200140.010879]: Controller Spawner: Loaded controllers: joint_position_controller
+[INFO] [1742200140.014674]: Controller Spawner: Loaded controllers: franka_state_controller
+[ INFO] [1742200140.020055287]: FrankaHW: Prepared switching controllers to joint_position with parameters limit_rate=1, cutoff_frequency=100, internal_controller=joint_impedance
+[ INFO] [1742200140.020546162]: franka_control: controller activated
+[INFO] [1742200140.020733]: Started controllers: joint_position_controller
+[ERROR] [1742200140.029322448]: Motion finished commanded, but the robot is still moving! ["joint_position_limits_violation"]
+control_command_success_rate: 1
+[ INFO] [1742200140.029353192]: franka_control: main loop
+[INFO] [1742200140.029612]: Started controllers: franka_state_controller
+terminate called after throwing an instance of 'franka::NetworkException'
+  what():  libfranka: UDP receive: Timeout
+[ERROR] [1742200141.073113081]: GripperServer: Exception reading gripper state: libfranka: UDP receive: Timeout
+================================================================================REQUIRED process [franka_control-2] has died!
+process has died [pid 38, exit code -6, cmd /catkin_ws/devel/lib/franka_control/franka_control_node __name:=franka_control __log:=/root/.ros/log/bcc435fa-0309-11f0-82e4-d843aeca34f0/franka_control-2.log].
+log file: /root/.ros/log/bcc435fa-0309-11f0-82e4-d843aeca34f0/franka_control-2*.log
+Initiating shutdown!
+================================================================================
+[controller_spawner-6] killing on exit
+[joint_state_publisher-5] killing on exit
+[robot_state_publisher-4] killing on exit
+[state_controller_spawner-3] killing on exit
+[franka_control-2] killing on exit
+[franka_gripper-1] killing on exit
+[INFO] [1742200141.227468]: Shutting down spawner. Stopping and unloading controllers...
+[INFO] [1742200141.227558]: Shutting down spawner. Stopping and unloading controllers...
+[INFO] [1742200141.228534]: Stopping all controllers...
+[INFO] [1742200141.228718]: Stopping all controllers...
+[WARN] [1742200141.230346]: Controller Spawner error while taking down controllers: unable to connect to service: [Errno 111] Connection refused
+[WARN] [1742200141.230435]: Controller Spawner error while taking down controllers: unable to connect to service: [Errno 111] Connection refused
+terminate called after throwing an instance of 'Poco::Net::NetException'
+  what():  Net Exception
+shutting down processing monitor...
+... shutting down processing monitor complete
