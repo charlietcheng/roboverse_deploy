@@ -1,4 +1,5 @@
 
+#### Charlie's franka deploy tool based on Ros1. Currently only fr3 and franka panda emika is supported
 
 ## BUILD DOCKER
 
