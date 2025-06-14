@@ -14,7 +14,8 @@ roboverse_deploy bridges the gap between simulation and reality by providing dep
 
 ## :robot: Supported Platforms
 
-- **:white_check_mark: Franka Research 3 (FR3)** - Fully implemented with both ROS1 and ROS2 integration
+- **:white_check_mark: Franka Research 3 (FR3)** - Fully implemented with both ROS1, ROS2 and Deoxys SDK integration
+- **:white_check_mark: Franka Emika Panda** - Partially tested with both ROS1 and Deoxys SDK
 - **:arrows_counterclockwise: Unitree Robots** - Coming soon
 - **:arrows_counterclockwise: AllegroHand** - Coming soon
 - **:arrows_counterclockwise: ARX7** - Coming soon  
