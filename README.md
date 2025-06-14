@@ -1,4 +1,4 @@
-# :robot: Roboverse Deploy
+# :robot: roboverse_deploy
 
 Deploy your sim-to-real robot policies trained on [RoboVerse](https://github.com/RoboVerseOrg/RoboVerse) to real-world robotic platforms! :rocket:
 
@@ -58,6 +58,6 @@ We welcome contributions! Whether you're adding support for new robot platforms,
 
 ## :books: Learn More
 
-- [Roboverse Dataset & Benchmark](https://github.com/roboverse/roboverse)
+- [Roboverse Dataset & Benchmark](https://roboverse.wiki/)
 - [Documentation](./docs) (Coming soon)
 - [Example Policy Checkpoints](./examples) (Coming soon)
