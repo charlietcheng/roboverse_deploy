@@ -23,10 +23,19 @@ print("node inited")
 viz = RvizVisualizer()
 video_recorder = VideoRecoder("test.mp4")
 camera = CameraRealsense() # None #
+# import pdb; pdb.set_trace()
 robot = FrankaPanda() # None # 
 print("robot loaded")
 
-target_qpos = [0, -1.3, 0, -2.5, 0, 1, 0]
+target_qpos = [
+        0.09162008114028396,
+        -0.19826458111314524,
+        -0.01990020486871322,
+        -2.4732269941140346,
+        -0.01307073642274261,
+        2.30396583422025,
+        0.8480939705504309,
+    ]
 p, R = fk(target_qpos)
 # print(hand_pos)
 # eef_pos = (hand_pos[0], hand_pos[1], np.array([1.0]))

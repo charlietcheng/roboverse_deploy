@@ -61,10 +61,10 @@ class FrankaPanda:
         self.tf_listener = tf2_ros.TransformListener(self.tf_buffer)
         self.tf_broadcaster = tf2_ros.TransformBroadcaster()
 
-        self.gripper_grasp_client = actionlib.SimpleActionClient('/franka_gripper/grasp', GraspAction)
-        self.gripper_grasp_client.wait_for_server()
-        self.gripper_move_client = actionlib.SimpleActionClient('/franka_gripper/move', MoveAction)
-        self.gripper_move_client.wait_for_server()
+        # self.gripper_grasp_client = actionlib.SimpleActionClient('/franka_gripper/grasp', GraspAction)
+        # self.gripper_grasp_client.wait_for_server()
+        # self.gripper_move_client = actionlib.SimpleActionClient('/franka_gripper/move', MoveAction)
+        # self.gripper_move_client.wait_for_server()
         self.error_recovery_client = actionlib.SimpleActionClient('/franka_control/error_recovery', ErrorRecoveryAction)
         self.error_recovery_client.wait_for_server()
 

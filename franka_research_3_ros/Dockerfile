@@ -5,7 +5,7 @@ FROM osrf/ros:noetic-desktop-full
 ##################
 
 # Set IP of Franka control PC
-ENV FCI_IP=169.254.67.230
+ENV FCI_IP=172.16.0.2
 
 ##################
 # libfranka build
@@ -59,7 +59,7 @@ RUN apt install -y python3-pip
 COPY requirements.txt .
 RUN python3 -m pip install -r requirements.txt
 
-ENV PATH=/opt/openrobots/bin:$PATH
+ENV PATH=/opt/openrobots/bin:$PATH>
 ENV PKG_CONFIG_PATH=/opt/openrobots/lib/pkgconfig:$PKG_CONFIG_PATH
 ENV LD_LIBRARY_PATH=/opt/openrobots/lib:$LD_LIBRARY_PATH
 ENV PYTHONPATH=/opt/openrobots/lib/python2.7/site-packages:$PYTHONPATH
@@ -67,12 +67,46 @@ ENV CMAKE_PREFIX_PATH=/opt/openrobots:$CMAKE_PREFIX_PATH
 # RUN python3 -m pip install panda-python
 
 # build franka controller
-# RUN apt install -y ros-noetic-franka-ros
+# RUN apt install -y ros-noetic-franka-ros>
 
 COPY deps/serl_franka_controllers src/serl_franka_controllers
 COPY deps/franka_ros src/franka_ros
 COPY deps/ros_control src/ros_control
-RUN rosdep install --from-paths src --ignore-src --rosdistro noetic -y --skip-keys libfranka
+
+##################
+# Robotiq 2F Gripper Installation
+##################
+
+# Install required dependencies for Robotiq gripper
+RUN apt-get update && apt-get install -y \
+    ros-noetic-soem \
+    ros-noetic-moveit \
+    python3-pip \
+    python3-serial
+
+# Add user to dialout group for serial port access
+RUN usermod -a -G dialout root
+
+# Install pymodbus for Robotiq communication (specific version for compatibility)
+# RUN pip3 install pymodbus==2.5.3
+
+# # Create a rosdep override for python-pymodbus
+# RUN mkdir -p /etc/ros/rosdep/sources.list.d/
+# RUN echo "yaml file:///etc/ros/rosdep/robotiq_override.yaml" > /etc/ros/rosdep/sources.list.d/20-robotiq.list
+# RUN echo "python-pymodbus:\n  ubuntu: [python3-pymodbus]" > /etc/ros/rosdep/robotiq_override.yaml
+
+# Clone Robotiq 2-finger gripper packages
+RUN cd /catkin_ws/src && \
+    git clone https://github.com/cambel/robotiq.git
+RUN cd /catkin_ws/src/robotiq && \
+# Update rosdep and skip keys that might cause issues
+RUN git checkout noetic-devel
+RUN apt-get update
+RUN rosdep update
+RUN rosdep install --from-paths . --ignore-src -y
+RUN rosdep install --from-paths src --ignore-src --rosdistro noetic -y --skip-keys="libfranka"
+
+
 RUN source /opt/ros/noetic/setup.sh \
     && catkin_make -DCMAKE_BUILD_TYPE=Release
 

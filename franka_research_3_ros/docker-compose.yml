@@ -25,7 +25,7 @@ services:
     tty: true # docker run -t
     depends_on:
       - roscore
-    command: /bin/bash -c '. /catkin_ws/devel/setup.bash && roslaunch --wait serl_franka_controllers impedance.launch robot_ip:=169.254.67.230 load_gripper:=true'
+    command: /bin/bash -c '. /catkin_ws/devel/setup.bash && roslaunch --wait serl_franka_controllers impedance.launch robot_ip:=172.16.0.2 load_gripper:=true'
 
   reset:
     image: franka_control:latest
@@ -88,8 +88,6 @@ services:
     # TODO: this doesn't work with '--help' as argument
     entrypoint: /catkin_ws/src/franka_control/entrypoint.sh
 
-
-
   gripper:
     image: franka_control:latest
     build: .
@@ -105,3 +103,15 @@ services:
     # TODO: this doesn't work with '--help' as argument
     entrypoint: /catkin_ws/src/franka_control/gripper.sh
 
+  robotiq_gripper:
+    image: franka_control:latest
+    build: .
+    network_mode: host
+    privileged: true
+    stdin_open: true
+    tty: true
+    devices:
+      - "/dev/ttyUSB0:/dev/ttyUSB0"  # Map the USB device for the Robotiq gripper
+    depends_on:
+      - roscore
+    command: /bin/bash -c "/robotiq_gripper_start.sh"

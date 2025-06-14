@@ -15,7 +15,7 @@ arg_parser.add_argument("--camera", type=str, default=None, help="camera serial 
 arg_parser.add_argument("--save-to", type=str, help="directory for saving the experiment record, will auto add timestamp")
 arg_parser.add_argument("--server-ip", type=str, default="localhost")
 arg_parser.add_argument("--server-port", type=int, default=26784)
-arg_parser.add_argument("--robot-ip", type=str, default="169.254.67.230")
+arg_parser.add_argument("--robot-ip", type=str, default="172.16.0.2")
 arg_parser.add_argument("--agent", type=str, default="dp", choices=["dp", "openvla", "octo"])
 
 
