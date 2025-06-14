@@ -1,5 +1,5 @@
 
-#### Charlie's franka deploy tool based on Ros1. Currently only fr3 and franka panda emika is supported
+#### roboverse_deploy: franka reserach 3 (FR3) / Franka Emika Panda with ros
 
 ## BUILD DOCKER
 
